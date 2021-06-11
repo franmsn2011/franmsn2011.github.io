@@ -1,20 +1,22 @@
 $(document).ready(function() {
-	var CONTEXT_PATH = $('#contextPathHolder').attr('href');
-	var contador=CONTEXT_PATH.split("/");
-	var uurle="lug";
-	var i=0;
-	for(i=0;i<contador.length-2;i++){
-		uurle="../"+uurle;
-	}
-	$.get(uurle, function(dataE) {
-		var objE = JSON.parse(dataE);
-		var datossE = $("#idLugar")[0];
-		var datossL = $("#idLugar1")[0];
-		var perfil = $("#idLug").val();
-		for (a in objE.lugares) { 
-			datossE.innerHTML += `<option value='${objE.lugares[a].idLugar}'>${objE.lugares[a].nombreLugar}</option>`;
-			datossL.innerHTML += `<option value='${objE.lugares[a].idLugar}'>${objE.lugares[a].nombreLugar}</option>`;
-		
-		}
-	});
+	var u= window.location.href;
+	u=u.slice(41);
+	//declaro varialbles para imprimir;
+	var nombre;
+	var fecha;
+	var desde;
+	var hasta;
+	//separo por datos de permiso;
+	var array= u.split("&");
+	nombre=array[0].split("=")[1];
+	fecha=array[1].split("=")[1];
+	desde=array[2].split("=")[1];
+	hasta=array[3].split("=")[1];
+	var dats = $("#idPermisoL")[0];
+	dats.innerHTML += `<h2>`+ nombre+`</h2>`;
+	
+	dats.innerHTML += `<h2>`+ fecha+`</h2>`;
+	dats.innerHTML += `<h2>`+ desde+`</h2>`;
+	dats.innerHTML += `<h2>`+ hasta+`</h2>`;
+			
 });
